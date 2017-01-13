@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv;
     private TextView tv2;
     private TextView tv3;
-public static final String TAG = "MainActivity";
+    public static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +55,9 @@ public static final String TAG = "MainActivity";
         titles.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Log.e(TAG, "onTabSelected: " );
+                Log.e(TAG, "onTabSelected: ");
                 int position = tab.getPosition();
+                vpprodiunctidata.setCurrentItem(position);
                 switch (position) {
                     case 0:
                         Toast.makeText(MainActivity.this, "你选中的" + tv.getText(), Toast.LENGTH_SHORT).show();
@@ -70,13 +72,11 @@ public static final String TAG = "MainActivity";
                         tv3.setTextColor(getResources().getColor(R.color.colorAccent));
                         break;
                     default:
-                        Log.e("====", "onTabSelected: "+position);
+                        Log.e("====", "onTabSelected: " + position);
                         tv.setTextColor(getResources().getColor(R.color.colorAccent));
-                        vpprodiunctidata.setCurrentItem(position);
                         break;
                 }
             }
-
 
 
             @Override
@@ -84,18 +84,18 @@ public static final String TAG = "MainActivity";
                 tv.setTextColor(getResources().getColor(R.color.colorPrimary));
                 tv2.setTextColor(getResources().getColor(R.color.colorPrimary));
                 tv3.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Log.e(TAG, "onTabUnselected: " );
+                Log.e(TAG, "onTabUnselected: ");
 
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                Log.e(TAG, "onTabReselected: " );
+                Log.e(TAG, "onTabReselected: ");
 
             }
         });
         //设置选中
-     titles.getTabAt(2).select();
+        titles.getTabAt(1).select();
     }
 
     private void initViewPager() {
@@ -104,20 +104,20 @@ public static final String TAG = "MainActivity";
             @Override
 //            在页面滚动
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                 titles.setScrollPosition(position,positionOffset,true);
+                titles.setScrollPosition(position, positionOffset, false);
             }
 
             @Override
 //            选中页面
             public void onPageSelected(int position) {
-                Log.e("=====", "onPageSelected: " );
+                Log.e("=====", "onPageSelected: ");
                 titles.getTabAt(position).select();
             }
 
             @Override
 //            页面滚动改变中
             public void onPageScrollStateChanged(int state) {
-             titles.setScrollX(state);
+                titles.setScrollX(state);
             }
         });
 
