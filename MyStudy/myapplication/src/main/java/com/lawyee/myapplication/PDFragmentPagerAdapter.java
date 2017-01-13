@@ -45,6 +45,5 @@ public class PDFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return mTitles[position];
-
     }
 }
